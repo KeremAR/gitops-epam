@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: production-todo-app
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argocroj.io
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/KeremAR/proxmox-k3s' # <-- app repo
+    path: helm-charts/todo-app
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values.yaml
+        - values-prod.yaml # Production values file
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    prune: true
+    selfHeal: true
+    syncOptions:
+      - CreateNamespace=true # create namespace if it doesn't exist
