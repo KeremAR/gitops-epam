@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/KeremAR/proxmox-k3s' # <-- app repo
     path: helm-charts/todo-app
-    targetRevision: 2e381933865d0c61ef561074972266f300b0e4d9 
+    targetRevision: 51739f2e4215651e615ec2e26af0e81232da6651 
     helm:
       valueFiles:
         - values.yaml
