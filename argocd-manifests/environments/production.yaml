@@ -18,11 +18,11 @@ spec:
       parameters:
         # Image tags (updated by Jenkins CI/CD)
         - name: frontend.image.tag
-          value: 'latest'  # Jenkins will update this
+          value: '48'
         - name: userService.image.tag
-          value: 'latest'  # Jenkins will update this
+          value: '48'
         - name: todoService.image.tag
-          value: 'latest'  # Jenkins will update this
+          value: '48'
   destination:
     server: https://kubernetes.default.svc
     namespace: production
