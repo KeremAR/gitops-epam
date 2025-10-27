@@ -14,7 +14,15 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-        - values-prod.yaml # Production values file
+        - values-prod.yaml # Production values file (static config only)
+      parameters:
+        # Image tags (updated by Jenkins CI/CD)
+        - name: frontend.image.tag
+          value: 'latest'  # Jenkins will update this
+        - name: userService.image.tag
+          value: 'latest'  # Jenkins will update this
+        - name: todoService.image.tag
+          value: 'latest'  # Jenkins will update this
   destination:
     server: https://kubernetes.default.svc
     namespace: production
