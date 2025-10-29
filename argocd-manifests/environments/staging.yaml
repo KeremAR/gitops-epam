@@ -15,6 +15,14 @@ spec:
       valueFiles:
         - values.yaml
         - values-staging.yaml # Staging values file
+      parameters:
+        # Image tags (updated by Jenkins CI/CD)
+        - name: frontend.image.tag
+          value: '81'
+        - name: userService.image.tag
+          value: '81'
+        - name: todoService.image.tag
+          value: '81'
   destination:
     server: https://kubernetes.default.svc
     namespace: staging
