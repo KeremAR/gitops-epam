@@ -18,11 +18,11 @@ spec:
       parameters:
         # Image tags (updated by Jenkins CI/CD)
         - name: frontend.image.tag
-          value: '83'
+          value: '92'
         - name: userService.image.tag
-          value: '83'
+          value: '92'
         - name: todoService.image.tag
-          value: '83'
+          value: '92'
   destination:
     server: https://kubernetes.default.svc
     namespace: staging
