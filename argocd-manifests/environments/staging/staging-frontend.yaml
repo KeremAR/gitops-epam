@@ -17,7 +17,7 @@ spec:
       parameters:
         # Image tag (updated by Jenkins CI/CD)
         - name: image.tag
-          value: 'latest'
+          value: 'a53131e'
         # Staging-specific overrides
         - name: deployment.replicas
           value: '1'
