@@ -1,20 +1,13 @@
-# GitOps Repository for the Kustomize-based To-Do App
+### GitOps Structure: App of Apps
 
-This repository contains the Kubernetes manifests required to deploy the microservices application using a GitOps workflow powered by [ArgoCD](https://argo-cd.readthedocs.io/en/stable/).
+We use the "App of Apps" pattern to structure our GitOps repository. This provides a centralized and scalable way to manage multiple applications and environments.
 
-## Repository Structure
+- **`root-application.yaml`**: This is the parent application. It is configured to monitor a path in the GitOps repository (e.g., `environments/`) and automatically create any `Application` resources defined there. This allows for easy onboarding of new environments or applications.
 
-This repository follows the **App of Apps** pattern for ArgoCD.
+- **Environment Applications (`staging.yaml`, `production.yaml`)**: These are child applications managed by the root application. Each file defines the deployment for a specific environment:
+    - They point to the `todo-app` Helm chart.
+    - They specify the target namespace (`staging` or `production`).
+    - They provide environment-specific configurations using different Helm value files (`values-staging.yaml` or `values-prod.yaml`).
+    - They are configured with an automated sync policy, ensuring that any changes merged to the main branch of the GitOps repository are automatically applied to the cluster.
 
--   `/argocd-manifests/root-application.yaml`: This is the parent or "root" application. This is the only manifest that needs to be manually applied to the Kubernetes cluster to bootstrap the entire environment. It is configured to watch the `/argocd-manifests/environments` directory for child applications.
-
--   `/argocd-manifests/environments/`: This directory contains the ArgoCD `Application` manifests for each environment.
-    -   `staging.yaml`: Defines the application for the `staging` environment. It points to the `kustomize/overlays/staging` directory in the [gcp-deploy-devops application repository](https://github.com/KeremAR/gcp-deploy-devops).
-
-## How It Works
-
-1.  The `root-application.yaml` is manually applied to a Kubernetes cluster where ArgoCD is running.
-2.  ArgoCD detects the root application and creates it.
-3.  The root application, in turn, tells ArgoCD to look for more `Application` manifests in the `/argocd-manifests/environments/` path.
-4.  ArgoCD finds `staging.yaml`, creates the `staging-todo-app` application, and starts monitoring the specified Git repository (`https://github.com/KeremAR/gcp-deploy-devops`) and path (`kustomize/overlays/staging`).
-5.  Any changes pushed to the `main` branch of the application repository will be automatically detected by ArgoCD, which will then sync the changes to the `staging` namespace in the Kubernetes cluster.
+**Note:** The GitOps manifests are maintained in a separate, dedicated Git repository.
