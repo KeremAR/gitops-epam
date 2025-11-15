@@ -14,21 +14,11 @@ spec:
     helm:
       valueFiles:
         - values.yaml
+        - values-staging.yaml
       parameters:
         # Image tag (updated by Jenkins CI/CD)
         - name: image.tag
-          value: 'b495cae'
-        # Staging-specific overrides
-        - name: deployment.replicas
-          value: '1'
-        - name: resources.requests.cpu
-          value: '100m'
-        - name: resources.requests.memory
-          value: '128Mi'
-        - name: resources.limits.cpu
-          value: '250m'
-        - name: resources.limits.memory
-          value: '256Mi'
+          value: 'latest'
   destination:
     server: https://kubernetes.default.svc
     namespace: staging
