@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/KeremAR/proxmox-k3s' # <-- app repo
     path: helm-charts/todo-app
-    targetRevision: 'v1.0.2'
+    targetRevision: 'v1.0.0'
     helm:
       valueFiles:
         - values.yaml
@@ -18,11 +18,11 @@ spec:
       parameters:
         # Image tags (updated by Jenkins CI/CD)
         - name: frontend.image.tag
-          value: '83'
+          value: '7867d31'
         - name: userService.image.tag
-          value: '83'
+          value: '7867d31'
         - name: todoService.image.tag
-          value: '83'
+          value: '7867d31'
   destination:
     server: https://kubernetes.default.svc
     namespace: production

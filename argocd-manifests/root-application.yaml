@@ -8,9 +8,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/KeremAR/gitops-epam' # <-- TODO: GitOps reponuzun URL'sini buraya yazın
+    repoURL: 'https://github.com/KeremAR/gitops-epam'
     path: argocd-manifests/environments
     targetRevision: HEAD
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
