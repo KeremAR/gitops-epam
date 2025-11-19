@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/KeremAR/proxmox-k3s'
     path: helm-charts/frontend
-    targetRevision: 'v1.0.3'
+    targetRevision: 'v1.0.4'
     helm:
       valueFiles:
         - values.yaml
@@ -18,7 +18,7 @@ spec:
       parameters:
         # Image tag (managed by production deployment process)
         - name: image.tag
-          value: '29349b4'
+          value: '96263b0'
   destination:
     server: https://kubernetes.default.svc
     namespace: production
