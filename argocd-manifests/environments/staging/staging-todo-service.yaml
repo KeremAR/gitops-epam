@@ -18,7 +18,7 @@ spec:
       parameters:
         # Image tag (updated by Jenkins CI/CD)
         - name: image.tag
-          value: '460c65d'
+          value: '3483e15'
   destination:
     server: https://kubernetes.default.svc
     namespace: staging
